@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="col-md-15 offset-md-2">
+        <div class="row"></div>
+    </div>
+<script>
+
+    // https://getty.uz/get-posts
+    fetch('https://getty.uz/get-posts')
+    .then(response => response.json())
+    .then(response =>{
+        for(obj of response.data) {
+            var contenr=document.querySelector('.contenr')
+            var row=document.querySelector('.row')
+            row.style.gap="15px"
+            var card = document.createElement('div')
+            card.classList.add('card')
+            card.style.width="18rem";
+            card.classList.add('d-grid')
+            card.classList.add('j-content-center')
+            row.appendChild(card)
+            var img=document.createElement('img')
+            img.classList.add('img-fluid')
+            card.appendChild(img)
+            var h1 =document.createElement('h1')
+            card.appendChild(h1)
+            var lorem = document.createElement('div')
+            lorem.classList.add('overflow-hidden')
+            lorem.style.height="4.5rem"
+            card.appendChild(lorem)
+            lorem.classList.add('lorem')
+            var p =document.createElement('p')
+            lorem.appendChild(p);
+            var button =document.createElement('button')
+            button.classList.add('btn-primary')
+            button.classList.add('btn')
+            button.classList.add('align-items-center')
+            button.classList.add('justify-content-center')
+            button.style.width="7rem"
+            button.style.height="2rem"
+            card.appendChild(button) 
+            button.innerText='Read more'
+            console.log(response)
+            img.src='https://getty.uz/'+obj.image
+            h1.innerText=obj.title
+            p.innerText=obj.info
+        }
+    })
+</script>
+</body>
+</html>
